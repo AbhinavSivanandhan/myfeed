@@ -1,0 +1,70 @@
+#input-box-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  padding: 0.4rem;
+  margin: 0.5rem;
+  width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  #input-box-container {
+    background-color: rgba(99, 97, 97, 0.5);
+  }
+}
+
+#msg-input {
+  background-color: rgba(253, 253, 253, 0.5);
+  flex: 1;
+  font-size: 1.2rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: #333;
+  border: none;
+  margin-left: 1px;
+  margin-right: 1px;
+  text-indent: 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+  #msg-input {
+    background-color: rgba(102, 101, 101, 0.55);
+    color: azure;
+  }
+}
+
+#send-btn {
+  background-color: royalblue;
+  border-radius: 15px;
+  padding: 1px;
+  margin-left: 1px;
+  margin-right: 1px;
+  cursor: pointer;
+  overflow: hidden;
+  height: 1.75rem;
+  width: 1.75rem;
+}
+
+#enterKeyListener {
+  height: 0;
+  width: 0;
+  border: "none";
+  padding: 0;
+  outline: "none";
+}
+
+#add-attatchment-btn {
+  padding: 1px;
+  margin-left: 1px;
+  cursor: pointer;
+  overflow: hidden;
+  height: 1.75rem;
+  width: 1.75rem;
+}
+
+input[type="file"] {
+  display: none;
+}

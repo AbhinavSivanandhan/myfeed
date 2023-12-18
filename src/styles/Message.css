@@ -1,0 +1,79 @@
+.msg {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: 1%;
+  padding: 2px;
+  border: 0.1px solid #a5a3a360;
+  border-radius: 5px;
+  width: fit-content;
+  min-width: 8%;
+	max-width: 75%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .other-msg {
+    align-self: flex-start;
+    background-color: chocolate;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .other-msg {
+    align-self: flex-start;
+    background-color: rgba(249, 106, 4, 0.538);
+  }
+}
+
+.my-msg {
+  align-self: flex-end;
+  justify-self: end;
+  color: chocolate;
+}
+
+@media (prefers-color-scheme: dark) {
+  .my-msg {
+    background-color: rgb(245, 244, 243);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .my-msg {
+    background-color: white;
+  }
+}
+
+.msg-time {
+  align-self: flex-end;
+  color: grey;
+}
+
+.msg-text {
+  align-self: flex-start;
+  font-size: 1.2rem;
+  font-weight: 450;
+  border: none;
+  margin-left: 1px;
+  margin-right: 1px;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
+.media-in-msg {
+  align-self: center;
+  display: block;
+  border-top: 0.65rem solid transparent;
+}
+
+.small-media {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.full-media {
+  height: 75%;
+  border: none;
+	overflow-y: scroll;
+	overflow-x: scroll;
+}

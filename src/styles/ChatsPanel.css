@@ -1,0 +1,58 @@
+#ChatPanel-Header{
+		border-bottom: 1px solid #e0e0e0;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		width: inherit;
+		height: 80px;
+		padding: 5px;
+}
+
+.chats-list{
+	padding-inline-start: 0px;
+}
+
+#SignOut-btn{
+	transition: all 150ms;
+}
+
+@media (prefers-color-scheme: dark) {
+	#SignOut-btn:hover{
+		background-color: #2f2d2d;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	#SignOut-btn:hover{
+		background-color: #e1e1e1;
+	}
+}
+
+#PopupHeader{
+	color: black;
+}
+
+#CreateChatPopup{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+}
+
+#newUserInput{
+	width: 75%;
+	color: black;
+	background-color: white;
+	overflow-x: scroll;
+	text-align: center;
+}
+
+#CreateChat-btn{
+	margin-top: 4px;
+	color: black;
+	background-color: whitesmoke;
+	height: 40px;
+	text-align: center;
+}

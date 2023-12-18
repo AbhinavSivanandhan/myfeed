@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3artsyncstorage7b10e072",
+  "bucketName": "artsync-storage-7b10e072",
+  "policyUUID": "ee2bf68e",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}
