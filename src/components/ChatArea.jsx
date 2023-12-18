@@ -6,7 +6,7 @@ import "../styles/ChatArea.css";
 
 import { useEffect, useState } from "react";
 
-import { getChatRoom, chatroomTextsByCreatedAt } from "../graphql/queries";
+import { getChatRoom, textsByChatroomID } from "../graphql/queries";
 import { onCreateText, onUpdateChatRoom } from "../graphql/subscriptions";
 
 export function ChatArea(props) {
@@ -49,11 +49,11 @@ export function ChatArea(props) {
       setReciever(otherUser);
 
       const textData = await props.amplifyClient.graphql({
-        query: chatroomTextsByCreatedAt,
+        query: textsByChatroomID,
         variables: { chatroomID: props.selectedChat.chatRoomId },
       });
-      setTexts(textData.data.chatroomTextsByCreatedAt.items);
-      // console.log(textData.data.chatroomTextsByCreatedAt.items);
+      setTexts(textData.data.textsByChatroomID.items);
+      // console.log(textData.data.textsByChatroomID.items);
     };
     setUpChat();
 
