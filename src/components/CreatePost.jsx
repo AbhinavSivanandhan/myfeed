@@ -7,11 +7,24 @@ import { createPost as createPostMutation } from "../graphql/mutations";
 Amplify.configure(amplifyconfig);
 const client = generateClient();
 
-async function createPostAsync(userId) {
+async function createPostAsync(postDetails) {
+  const { id, caption, type, comment, likes, mediaSrc, userID } = postDetails;
+console.log('postDetails',postDetails);
   try {
     const response = await client.graphql({
-      query: createPostMutation,
-      variables: { id: userId, caption: 'works!' }
+      mutation: createPostMutation,
+      variables: {
+        input: {
+          id,
+          caption,
+          type,
+          comment,
+          likes,
+          mediaSrc,
+          userID
+        },
+        condition: null  // Assuming you don't need any condition
+      }
     });
 
     console.log('Post created successfully:', response);
@@ -23,6 +36,8 @@ async function createPostAsync(userId) {
     // Handle error accordingly
   }
 }
+
+
 
 export function CreatePost(props) {
   const [bio, setBio] = useState("");
@@ -38,9 +53,20 @@ export function CreatePost(props) {
   };
 
   const createPost = () => {
+    // Get the necessary information from the component's state
+    const postDetails = {
+      id: "be37ff0f-f199-4c9b-87cf-dummy-e5570ce92735",
+      caption: bio,
+      type: "IMAGE",
+      comment: "", // You mentioned you don't care about the value for comment
+      likes: 0,    // You mentioned you don't care about the value for likes
+      mediaSrc: "https://source.unsplash.com/random?nature",
+      userID: userId
+    };
+  
     // Call the asynchronous function
     console.log('submit clicked');
-    createPostAsync(userId);
+    createPostAsync(postDetails);
     // You can add logic here if needed, but keep in mind that this function returns immediately
   };
 
