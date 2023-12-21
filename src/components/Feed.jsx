@@ -34,6 +34,12 @@ export function Feed(props) {
       </div>
     );
   };
+
+  // Function to handle navigation to CreatePost
+  const goToCreatePost = () => {
+    props.setPage("createPost");
+  };
+
   return (
     <div>
       <Header setPage={props.setPage} />
@@ -41,8 +47,9 @@ export function Feed(props) {
         <div id="posts">
           {postJsx != null && postJsx.length > 0 && postJsx}
         </div>
-        <div id="feed-sidebar">Sidebar</div>
-      </div>
+        <div id="feed-sidebar">
+          <button onClick={goToCreatePost}>Create Post</button>
+        </div>      </div>
     </div>
   );
 }

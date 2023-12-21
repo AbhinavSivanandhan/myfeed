@@ -16,6 +16,7 @@ import { Feed } from "./components/Feed.jsx";
 import { UpdateProfile } from "./components/Form.jsx";
 import { Profile } from "./components/Profile.jsx";
 import { Chat } from "./components/Chat.jsx";
+import { CreatePost } from "./components/CreatePost.jsx";
 
 function App({ signOut, user }) {
   const client = generateClient();
@@ -83,7 +84,9 @@ function App({ signOut, user }) {
       {page == "profile" && (
         <Profile user={userInfo} otherUser={otherUser} setPage={setPage} />
       )}
-
+      {page === "createPost" && (
+        <CreatePost user={userInfo} setPage={setPage} />
+      )}
       {/**
        * Abhinav: Follow the pattern above and create a render for createPost.jsx
         maybe {page == "createPost" && <CreatePost user={userInfo} setPage={setPage} />}
