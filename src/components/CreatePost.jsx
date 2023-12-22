@@ -8,26 +8,16 @@ Amplify.configure(amplifyconfig);
 const client = generateClient();
 
 async function createPostAsync(postDetails) {
-  const { id, caption, type, comment, likes, mediaSrc, userID } = postDetails;
+  //const { id, caption, type, comment, likes, mediaSrc, userID } = postDetails;
 console.log('postDetails',postDetails);
   try {
     const response = await client.graphql({
-      mutation: createPostMutation,
-      variables: {
-        input: {
-          id,
-          caption,
-          type,
-          comment,
-          likes,
-          mediaSrc,
-          userID
-        },
-        condition: null  // Assuming you don't need any condition
-      }
+      query: createPostMutation,
+      variables: { input: postDetails  }
     });
 
     console.log('Post created successfully:', response);
+    props.setPage("feed");
 
     // Implement logic to handle the post creation, e.g., update UI or navigate back to the feed
     // Example: props.setPage("feed");
@@ -36,8 +26,6 @@ console.log('postDetails',postDetails);
     // Handle error accordingly
   }
 }
-
-
 
 export function CreatePost(props) {
   const [bio, setBio] = useState("");
@@ -54,19 +42,30 @@ export function CreatePost(props) {
 
   const createPost = () => {
     // Get the necessary information from the component's state
-    const postDetails = {
-      id: "be37ff0f-f199-4c9b-87cf-dummy-e5570ce92735",
-      caption: bio,
-      type: "IMAGE",
-      comment: "", // You mentioned you don't care about the value for comment
-      likes: 0,    // You mentioned you don't care about the value for likes
-      mediaSrc: "https://source.unsplash.com/random?nature",
-      userID: userId
-    };
+     const postDetails = {
+      "id": "dummyId2",
+      "caption": "Nature random1",
+      "type": "IMAGE",
+      "likes": 10,
+      "userID": "0a43c3ed-a426-4469-a912-ca2c0199e0c4",
+      "mediaSrc": "https://source.unsplash.com/random?nature"
+    }
+    // "comment": {
+    //   "awsJSON": "{\"key\": \"value\", \"otherKey\": \"-\"}"
+    // },
+    //   id: "be37ff0f-f199-4c9b-87cf-dummy-e5570ce92735",
+    //   caption: bio,
+    //   type: "IMAGE",
+    //   comment: {'comment': '-'}, // You mentioned you don't care about the value for comment
+    //   likes: 0,    // You mentioned you don't care about the value for likes
+    //   mediaSrc: "https://source.unsplash.com/random?nature",
+    //   userID: '123@userId'
+    // };
   
     // Call the asynchronous function
     console.log('submit clicked');
     createPostAsync(postDetails);
+    props.setPage("feed");
     // You can add logic here if needed, but keep in mind that this function returns immediately
   };
 

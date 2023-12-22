@@ -9,6 +9,7 @@ import { listPosts } from "../graphql/queries.js";
 
 
 export function Feed(props) {
+  console.log('You are on Feed');
 	const [postJsx, setPostJsx] = useState(null);
   const client = generateClient();
 
