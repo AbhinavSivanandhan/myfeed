@@ -27,6 +27,7 @@ console.log('postDetails',postDetails);
   }
 }
 
+
 export function CreatePost(props) {
   const [bio, setBio] = useState("");
   const [image, setImage] = useState(null);
@@ -39,16 +40,26 @@ export function CreatePost(props) {
     console.log("Uploading image:", file);
     setImage(file);
   };
+  const generateRandomId = () => {
+    // Generate a random alphanumeric ID of length 8
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let randomId = '';
+    for (let i = 0; i < 12; i++) {
+      randomId += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return randomId;
+  };
+  const [generatedId, setGeneratedId] = useState(generateRandomId()); // Initialize with a random ID
 
   const createPost = () => {
     // Get the necessary information from the component's state
      const postDetails = {
-      "id": "dummyId2",
-      "caption": "Nature random1",
+      "id": generatedId,
+      "caption": bio,
       "type": "IMAGE",
       "likes": 10,
-      "userID": "0a43c3ed-a426-4469-a912-ca2c0199e0c4",
-      "mediaSrc": "https://source.unsplash.com/random?nature"
+      "userID": props.user.id,
+      "mediaSrc": "https://source.unsplash.com/random?art"
     }
     // "comment": {
     //   "awsJSON": "{\"key\": \"value\", \"otherKey\": \"-\"}"
