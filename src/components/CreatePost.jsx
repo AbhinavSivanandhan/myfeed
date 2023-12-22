@@ -3,6 +3,7 @@ import { Amplify } from "aws-amplify";
 import { generateClient } from 'aws-amplify/api';
 import amplifyconfig from '../amplifyconfiguration.json';
 import { createPost as createPostMutation } from "../graphql/mutations";
+import { uploadFilesToS3 } from '../utils.js';
 
 Amplify.configure(amplifyconfig);
 const client = generateClient();
@@ -31,15 +32,31 @@ console.log('postDetails',postDetails);
 export function CreatePost(props) {
   const [bio, setBio] = useState("");
   const [image, setImage] = useState(null);
+  const [imageKey, setImageKey] = useState(null);
+  const [imageTypeKey, setImageTypeKey] = useState(null);
 
   // Assuming you have the userId available in props
   const userId = props.userId;
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    console.log("Uploading image:", file);
-    setImage(file);
+  const handleImageUpload = async (event) => {
+    console.log('handleImg')
+    const file = event.target.files;
+
+    try {
+      const result = await uploadFilesToS3(file);
+      console.log('file-eh');
+      console.log(result);
+      //{james-wainscoat-skrGqiYSIK4-unsplash_1703275877908_de0731bf-63fa-47c3-9ec8-cfae852b1a5a.jpeg: 'IMAGE'}
+      const imageKeyVal=Object.keys(result)[0];
+      //const imageKeyVal=Object.keys(result)[0];
+      const typeValue = result[imageKeyVal];
+      setImageKey(imageKeyVal);
+      setImageTypeKey(typeValue);
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
   };
+
   const generateRandomId = () => {
     // Generate a random alphanumeric ID of length 8
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -56,10 +73,10 @@ export function CreatePost(props) {
      const postDetails = {
       "id": generatedId,
       "caption": bio,
-      "type": "IMAGE",
+      "type": imageTypeKey,
       "likes": 10,
       "userID": props.user.id,
-      "mediaSrc": "https://source.unsplash.com/random?art"
+      "mediaSrc": imageKey
     }
     // "comment": {
     //   "awsJSON": "{\"key\": \"value\", \"otherKey\": \"-\"}"

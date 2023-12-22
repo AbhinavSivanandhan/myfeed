@@ -19,7 +19,8 @@
     "react-dom": "^18.2.0",
     "react-list": "^0.8.17",
     "react-player": "^2.14.0",
-    "reactjs-popup": "^2.0.6"
+    "reactjs-popup": "^2.0.6",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
